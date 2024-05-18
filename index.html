@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="./HeatMap with watercolor Stamen_files/ol.js.descarga" type="text/javascript"></script>
+	<link rel="stylesheet" href="./HeatMap with watercolor Stamen_files/ol.css" type="text/css">
+	<title>TALENTO TECH 2024</title>
+	
+	<!-- leaflet cdn link -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	
+    <style>
+		.p-img {
+				background-image: url("https://talentotech.gov.co/849/articles-334604_foto_marquesina.jpg");
+				background-size: cover;
+				background-repeat:no-repeat;
+				background-position: center center;
+			}
+				
+		.intro-post {
+					background-size: cover;
+					background-repeat:no-repeat;
+					background: #042b54;
+					color: #fff;
+					padding: 1px;
+			}
+		.desc-post {
+					background-size: cover;
+					background-repeat:no-repeat;
+					background: #2c3c64;
+					color: #fff;
+					padding: 1px;
+			}
+		.res-post {
+					background-size: cover;
+					background-repeat:no-repeat;
+					background: #06627d;
+					color: #fff;
+					padding: 1px;
+			}	
+		.map {
+			width: 100%;
+			height: 700px;
+			}
+		h2 {
+			font-family: 'Open Sans', Arial;
+			}
+	</style>
+</head>
+<body>
+<div class="intro-post">
+<h1>Proyecto final Análisis y Visualización de Datos</h1>
+<h3>Estudiante: Alex Bolaños Rodriguez</h3>
+<p>El proyecto se centra en analizar los datos de ventas por año registrados por las estaciones de servicio que dispensan gas natural a nivel nacional</p>
+</div>
+<div class="desc-post">
+<h3>Metodología</h3>
+<p>Para realizar este proyecto se toma como fuente el portal de datos abiertos del gobierno de Colombia (www.datos.gov.co),allí obtuvimos un set de datos correspondie a Ventas de Gas Natural Comprimido Vehicular.
+Para almacenar los datos creamos una base de datos MySQL en la nube clever-cloud para luego, por medio de código python, poblar la tabla y disponer de la información para generar un Dashboard en Looker Studio de Google.
+Finalmente, se crea una pagina HTML que muestra un Dashboard y Mapa de calor (en Javascript y Leaflet) embebidos para facilitar visualizar y análizar los datos de manera sencilla. </p>
+</div>
+<div class="p-img">
+<div align="center"><iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/b8d9a8fd-6603-42f8-a634-d79221887496/page/k2F0D" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+</div>
+<div class="desc-post">
+<h3>Mapa de Calor (Heatmap)</h3>
+<p>Mediante el uso de la librería Folium realizamos un mapa de calor para identificar las zonas del pais en donde mas se concentran las estaciones de servicio que dispensan gas Natural. </p>
+</div>
+<div id="map" class="map" align="center">
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="./Ventas.js"></script>
+
+<script src="./leaflet-heat.js"></script>
+
+
+<script>
+    // Map initialization 
+    var map = L.map('map').setView([4, -74], 6);
+
+    //osm layer
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+
+    console.log(addressPoints);
+
+    addressPoints = addressPoints.map(function (p) { return [p[0], p[1]]; });
+
+    console.log(addressPoints)
+
+    var heat = L.heatLayer(addressPoints).addTo(map);
+    
+</script>
+</div>
+<div class="res-post">
+<h3>Conclusiones</h3>
+<p>La visualización de datos en la nube por medio de plataformas y lenguajes abiertos nos permiten generar soluciones de manera interconectada, lo que facilita su desarrollo y flexibiliza su desarrollo.
+En este curso aprendí a integrar bases de datos, lenguaje python/Javascript y plataformas de visualización como Lookerstudio para generar tableros de control y mapas dinamicos que sin lugar a dudas generan valor para las personas que toman decisiones.
+ </p>
+ <h3>¡¡¡Gracias TalentoTech!!!!</h3>
+</div>
+</div>
+</body>
+</html>
